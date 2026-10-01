@@ -32,3 +32,14 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python test_auto_run.py
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t git-autorun .
+      - name: Smoke test
+        run: |
+          docker run --rm git-autorun --help
+          # the URL allowlist must reject non-GitHub/GitLab URLs inside the image
+          ! docker run --rm git-autorun https://example.com/a/b
