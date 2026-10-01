@@ -1,0 +1,36 @@
+name: Bug report
+description: Something failed or behaved unexpectedly
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you ran and what went wrong versus what you expected.
+    validations:
+      required: true
+  - type: input
+    id: repo
+    attributes:
+      label: Target repository URL
+      description: The repo you ran git-autorun against (if public).
+  - type: textarea
+    id: command
+    attributes:
+      label: Command used
+      render: shell
+      placeholder: python auto_run.py https://github.com/user/repo --no-ai
+  - type: textarea
+    id: log
+    attributes:
+      label: Relevant log output
+      description: From the console or `<workspace>/autorun.log.jsonl`. Remove any secrets.
+      render: shell
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Python version, AI provider (ollama / anthropic / none)
+      placeholder: Windows 11, Python 3.13, ollama
+    validations:
+      required: true
