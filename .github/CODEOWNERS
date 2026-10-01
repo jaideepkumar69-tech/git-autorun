@@ -1,0 +1,7 @@
+# Default owner for everything
+*                       @jaideepkumar69-tech
+
+# Safety-critical code and project policy: always request review
+/auto_run.py            @jaideepkumar69-tech
+/SECURITY.md            @jaideepkumar69-tech
+/.github/               @jaideepkumar69-tech
