@@ -1,5 +1,6 @@
 # git-autorun
 
+[![tests](https://github.com/jaideepkumar69-tech/git-autorun/actions/workflows/tests.yml/badge.svg)](https://github.com/jaideepkumar69-tech/git-autorun/actions/workflows/tests.yml)
 Clone a GitHub/GitLab repo, install its dependencies, run it, and (optionally) let an LLM patch failures.
 It also writes a `start.bat` into the installed project so you can relaunch it with a double-click.
 
