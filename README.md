@@ -43,11 +43,12 @@ start.bat test
 The image clones, installs and runs the target repo inside a container, as an unprivileged user, so nothing touches your machine.
 
 ```
-# or use the published image (from v1.0.1 on; multi-arch amd64/arm64):
-docker pull ghcr.io/jaideepkumar69-tech/git-autorun:latest
-
+# build locally:
 docker build -t git-autorun .
 docker run --rm -v autorun-ws:/workspace git-autorun https://github.com/user/repo [--run "python main.py"] [--no-ai]
+
+# or, from v1.0.1 on, pull the published multi-arch image instead of building:
+# docker pull ghcr.io/jaideepkumar69-tech/git-autorun:latest
 ```
 
 - Results and the log persist in the `autorun-ws` volume (`/workspace`).
