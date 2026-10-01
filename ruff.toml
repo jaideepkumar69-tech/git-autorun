@@ -1,0 +1,11 @@
+target-version = "py310"
+line-length = 140
+
+[lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = [
+    "E401",  # multiple imports on one line (test file)
+    "E402",  # sys.path tweak before import in tests
+    "E731",  # short lambdas are used deliberately
+    "E701", "E702",
+]

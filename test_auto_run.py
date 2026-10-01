@@ -1,6 +1,9 @@
 """Offline self-test (no network, no LLM): python test_auto_run.py  or  start.bat test"""
-import sys, tempfile, unittest
+import sys
+import tempfile
+import unittest
 from pathlib import Path
+
 sys.path.insert(0, str(Path(__file__).parent))
 import auto_run as a
 
