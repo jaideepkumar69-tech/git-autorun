@@ -1,0 +1,7 @@
+.git
+.github
+__pycache__
+*.pyc
+.venv
+test_auto_run.py
+*.md

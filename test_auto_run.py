@@ -19,6 +19,13 @@ class T(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 a.clone(bad, self.d, self.log)
 
+    def test_shell_keeps_custom_path(self):
+        self.sh.env = {"AUTORUN_TEST_VAR": "kept"}
+        r = self.sh.run("python -c \"import os; print(os.environ['AUTORUN_TEST_VAR'])\"")
+        self.assertIn("kept", r.out)
+        if not a.IS_WIN:
+            self.assertNotIn("l", self.sh.argv("x")[1].lstrip("-"))  # no login shell
+
     def test_shell_ok_and_fail(self):
         self.assertEqual(self.sh.run("python -c \"print(1)\"").code, 0)
         self.assertNotEqual(self.sh.run("python -c \"raise SystemExit(3)\"").code, 0)

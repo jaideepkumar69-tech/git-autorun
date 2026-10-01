@@ -66,7 +66,7 @@ class Shell:
     def argv(self, cmd: str) -> list[str]:
         if IS_WIN:
             return ["powershell.exe", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-Command", cmd]
-        return ["/bin/bash", "-lc", cmd]
+        return ["/bin/bash", "-c", cmd]  # not -l: a login shell resets PATH and drops the venv
 
     def run(self, cmd: str, timeout: int = CMD_TIMEOUT) -> Result:
         self.log.step("exec", cmd=cmd, cwd=str(self.cwd))

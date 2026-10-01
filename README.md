@@ -38,6 +38,21 @@ start.bat test
 | `--no-ai` | Never call an LLM |
 | `--yes` | Skip the "run untrusted code" confirmation |
 
+## Run in a Docker sandbox (recommended)
+
+The image clones, installs and runs the target repo inside a container, as an unprivileged user, so nothing touches your machine.
+
+```
+docker build -t git-autorun .
+docker run --rm -v autorun-ws:/workspace git-autorun https://github.com/user/repo [--run "python main.py"] [--no-ai]
+```
+
+- Results and the log persist in the `autorun-ws` volume (`/workspace`).
+- The image includes Python, git, Node.js and npm. Rust and Go projects need those toolchains added.
+- To use Ollama on the host: `--add-host=host.docker.internal:host-gateway` (Linux) and keep Ollama listening on the host. Or pass `-e ANTHROPIC_API_KEY=...`, and `-e AUTORUN_PROVIDER=none` to disable AI.
+- Add `--network none` after install-free runs, or other limits such as `--memory 2g --cpus 2`, to tighten the sandbox further. Install steps need the network.
+- The container skips the confirmation prompt (`--yes`), because the container is the sandbox. `start.bat` is only generated on Windows.
+
 ## What it does
 
 1. Validates the URL (only `https://github.com|gitlab.com/<owner>/<repo>`) and shallow-clones into a fresh timestamped folder. Nothing is overwritten.
